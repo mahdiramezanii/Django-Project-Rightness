@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!--header section end-->
+
+<div class="main">
+
+    <!--page header section start-->
+    <section class="" style="background: url('{% static 'img/header-bg-5.jpg' %}')no-repeat center center / cover">
+        <div class="section-lg bg-gradient-primary text-white section-header">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-7">
+                        <div class="page-header-content text-center">
+                            <h1>پیش فرض وبلاگ</h1>
+                            <nav aria-label="خرده نان" class="d-flex justify-content-center">
+                                <ol class="breadcrumb breadcrumb-transparent breadcrumb-text-light">
+                                    <li class="breadcrumb-item"><a href="{% url "Home:Home" %}">خانه</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url "blog:blog" %}">وبلاگ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">پیش فرض وبلاگ</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--page header section end-->
+
+    <!--blog section start-->
+    <section class="section section-lg ">
+        <div class="container">
+            <div class="row">
+
+                {% for a in article %}
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-md-4 mb-4">
+                    <div class="card bg-white border-variant-soft shadow-soft">
+                        <div class="blog-img position-relative">
+                            <img src="{{ a.image.url }}" class="card-img-top rounded-top" alt="دفترهای مضمون">
+                            <a href="#" class="position-absolute category-text small badge badge-secondary">{{ a.categori.all.0 }}</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="media d-flex align-items-center justify-content-between">
+                                <div class="post-group">
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="23k followers">
+                                        <img class="avatar avatar-xs mr-2 img-fluid rounded-circle border border-variant-primary p-1" src="{{ user.profile.image.url }}" alt="مدیر"> <span class="font-small">{{ a.witer }}</span>
+                                    </a>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="small"><span class="far fa-calendar-alt mr-2"></span>{{ a.create }}</span>
+                                </div>
+                            </div>
+                            <h3 class="h5 card-title mt-3"><a href="#">کل نگر تبلیغات را فعال کنید</a></h3>
+                            <p class="card-text">{{ a.text }}</p>
+                            <a href="{{ a.get_absulot_url }}" class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <nav class="mt-4">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link border border-variant-soft rounded" href="#">قبلی</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link border border-variant-soft rounded" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link border border-variant-soft rounded" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link border border-variant-soft rounded" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link border border-variant-soft rounded" href="#">بعد</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+    <!--blog section end-->
+
+
+{% endblock %}

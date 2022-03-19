@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--favicon icon-->
+    <link rel="icon" href="{% static "img/favicon.png" %}" type="image/png" sizes="16x16">
+
+    <!--title-->
+    {% block titel %}
+
+    {% endblock %}
+    <!--build:css-->
+    <link rel="stylesheet" href="{% static "css/main.css" %}">
+    <!-- endbuild -->
+</head>
+
+<body>
+
+<!--preloader start-->
+<div id="preloader">
+    <div class="loader1">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+<!--preloader end-->
+<!--header section start-->
+<header class="header position-relative z-9">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark navbar-theme-primary fixed-top headroom">
+        <div class="container position-relative">
+            <a class="navbar-brand mr-lg-3" href="index.html">
+                <img class="navbar-brand-dark" src="{% static "img/logo-white.png" %}" alt="منوی تصویر">
+                <img class="navbar-brand-light" src="{% static "img/logo-color.png" %}" alt="منوی تصویر">
+            </a>
+            <div class="navbar-collapse collapse" id="navbar-default-primary">
+                <div class="navbar-collapse-header">
+                    <div class="row">
+                        <div class="col-6 collapse-brand">
+                            <a href="#">
+                                <img src="{% static "img/logo-color.png" %}" alt="منوی تصویر">
+                            </a>
+                        </div>
+                        <div class="col-6 collapse-close">
+                            <i class="fas fa-times" data-toggle="collapse" role="button"
+                               data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                               aria-expanded="false" aria-label="تغییر پیمایش"></i>
+                        </div>
+                    </div>
+                </div>
+                <ul class="navbar-nav navbar-nav-hover ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "Home:Home" %}">خانه</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "about_us:about" %}">درباره ما</a>
+                    </li>
+
+                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "blog:blog" %}">وبلاگ</a>
+                    </li>
+
+
+                    <li class="nav-item"><a class="nav-link" href="{% url "contact_us:contact" %}">تماس با ما</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url "Home:Home" %}">خروج از حساب کاربری</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url "Home:Home" %}">{{ request.user.username }}</a></li>
+                        <li class="nav-item" ><img width="50px" height="50px" style="border-radius: 80px" src="{{ request.user.profile.image.url }}"></li>
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url "Acount:login" %}">ورود</a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="{% url "Acount:register" %}">ثبت نام</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="d-flex align-items-center">
+                <button class="navbar-toggler ml-2" type="button" data-toggle="collapse"
+                        data-target="#navbar-default-primary" aria-controls="navbar-default-primary"
+                        aria-expanded="false" aria-label="تغییر پیمایش">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+{% block content %}
+
+{% endblock %}
+
+
+<script src="{% static "js/vendors/jquery-3.5.1.min.js" %}"></script>
+<!--script src="{% static "js/vendors/popper.min.js" %}"></script>-->
+<script src="{% static "js/vendors/bootstrap.min.js" %}"></script>
+<script src="{% static "js/vendors/jquery.magnific-popup.min.js" %}"></script>
+<script src="{% static "js/vendors/jquery.easing.min.js" %}"></script>
+<script src="{% static "js/vendors/mixitup.min.js" %}"></script>
+<script src="{% static "js/vendors/headroom.min.js" %}"></script>
+<script src="{% static "js/vendors/smooth-scroll.min.js" %}"></script>
+<script src="{% static "js/vendors/wow.min.js" %}"></script>
+<script src="{% static "js/vendors/owl.carousel.min.js" %}"></script>
+<script src="{% static "js/vendors/jquery.waypoints.min.js" %}"></script>
+<!--<script src="assets/js/vendors/countUp.min.js"></script>-->
+<script src="{% static "js/vendors/jquery.countdown.min.js" %}"></script>
+<script src="{% static "js/vendors/validator.min.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>

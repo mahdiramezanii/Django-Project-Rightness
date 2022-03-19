@@ -1,0 +1,661 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="main">
+{% block titel %}
+    <title>
+    خانه
+    </title>
+    {% endblock %}
+    <!--hero section start-->
+    <section class="section section-header bg-gradient text-white min-vh-100 flex-column d-flex justify-content-center">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-6 col-lg-7">
+                    <div class="hero-content-left">
+                        {% for text in text1 %}
+                            <h1 class="display-2">{{ text.text1 }}</h1>
+                            <p class="lead">{{ text.text2 }}</p>
+                        {% endfor %}
+                        {% for i in item1 %}
+                            <ul class="list-unstyled tech-feature-list">
+                                <li class="py-1"><span class="ti-control-backward mr-2 float-left"></span>{{ i.item }}
+                                </li>
+                            </ul>
+                        {% endfor %}
+
+                        <div class="heighlight-list-wrap mt-4">
+                            <ul class="list-inline highlight-list">
+                                {% for i in item2 %}
+                                    <li class="list-inline-item text-center bg-soft-alt py-3 px-2 rounded-custom mb-4 mb-md-4 mb-lg-0">
+                                        <h5 class="counter h2 mb-0" data-count="100">{{ i.item1 }}</h5>
+                                        <span class="text-muted font-weight-bold font-small">{{ i.item2 }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="sign-up-form-wrap position-relative rounded p-5 bg-soft-alt shadow-lg">
+                        <div class="sign-up-form-header text-center mb-4">
+                            {% for text in text1 %}
+                                <h4 class="mb-0">{{ text.text_box1 }}</h4>
+                                <p>{{ text.text_box12 }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="message-box d-none">
+                            <div class="alert alert-danger"></div>
+                        </div>
+                        <form action="#" id="getQuoteFrm" method="post" class="sign-up-form">
+                            {% csrf_token %}
+                            <div class="form-group input-group">
+                                <input type="text" name="vazn" class="form-control" placeholder="وزنت رو وارد کن"
+                                       required="required">
+                            </div>
+
+                            <div class="form-group input-group">
+                                <input type="text" name="ghad" class="form-control" placeholder="قدت رو وارد کن"
+                                       required="required">
+                            </div>
+
+                            <div class="form-group input-group">
+                                <input type="text" name="sen" class="form-control" placeholder="سنت رو وارد کن"
+                                       required="required">
+                            </div>
+                            <label for="cars">جنسیت خودت رو وارد کن</label>
+                            <select name="jensiat" id="cars">
+                                <option value="mard">مرد</option>
+                                <option value="zan">زن</option>
+                            </select>
+
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="btn btn-primary btn-block"
+                                       value="محاسبه">
+                            </div>
+                            <hr>
+                            {% if response %}
+                            <div class="text text-center">
+                                <p class="text tab-content badge badge-dark">
+                                    {{ response.0 }}
+                                </p>
+                            </div>
+                            {% endif %}
+                            <div class="form-check d-flex align-items-center text-center">
+                                <input type="checkbox" class="form-check-input mt-0 mr-3" id="exampleCheck1">
+                                <label class="form-check-label text-muted" for="exampleCheck1">من با <a href="#">شرایط و
+                                    ضوابط</a> شما موافقم<a href="#"></a></label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--hero section end-->
+
+    <!--client logos start-->
+    <div class="section section-sm border border-bottom border-variant-soft">
+        <div class="container">
+            <div class="row justify-content-center">
+
+            </div>
+        </div>
+    </div>
+    <!--client logos end-->
+
+    <!--promo section start-->
+    <section class="section section-lg">
+        <div class="container">
+            <div class="row align-items-center justify-content-lg-between">
+                <div class="col-md-6 col-lg-6 mb-4 mb-md-4 mb-lg-0">
+                    <div class="feature-widget-wrap">
+                        <div class="row justify-content-center">
+                            {% for c in content1 %}
+                            <div class="col-12">
+                                <div class="card card-body shadow mt-4">
+                                    <div class="d-flex">
+                                        <div class="mr-3 mr-md-4">
+                                            <div class="mb-4 p-3 p-md-4 icon icon-shape icon-md rounded-circle bg-default-alt text-default">
+                                                <i class="fas fa-trophy"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-content">
+                                            <h5>{{ c.titel }}</h5>
+                                            <p class="mb-0">
+                                                 {{ c.text }}
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% for c in content2 %}
+                <div class="col-md-5 col-lg-5">
+                    <div class="feature-content section-title">
+                        <h2>{{ c.titel }}</h2>
+                        <p class="lead">{{ c.text }}</p>
+                        <a href="#" class="btn btn-secondary mt-4">بیشتر بدانید</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--promo section end-->
+
+    <!--cta section start-->
+    <section class="section section-lg text-white bg-gradient-primary">
+        <video class="fit-cover w-100 h-100 position-absolute z--1" src="corporate.mp4" autoplay="true" type="video/mp4"
+               muted="" loop="true"></video>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-9 col-md-10 col-lg-9">
+                    <div class="section-title text-center mb-5">
+                        <h2>برنامه ها را برای مدیریت مشاغل بارگیری کنید</h2>
+                        <p class="lead">ایجاد برنامه های شما به جذب مشتریان بالقوه بیشتری راهنمایی می کند. تیم بازاریابی
+                            یکپارچه ما همگرایی با تأثیر بالا را کار خواهد کرد.</p>
+                    </div>
+                    <div class="download-btn-wrap text-center">
+                        <a class="btn btn-pill border border-variant-light text-white shadow-hover mr-md-3 mb-4 mb-md-3 mb-lg-0"
+                           href="#">
+                            <div class="d-flex align-items-center">
+                                <span class="icon icon-md mr-3 h-auto"><i class="fab fa-apple"></i></span>
+                                <div class="d-block text-left">
+                                    <small class="font-small">بارگیری در</small>
+                                    <div class="h6 mb-0">فروشگاه برنامه</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="btn btn-pill border border-variant-light text-white shadow-hover mr-md-3 mb-4 mb-md-3 mb-lg-0"
+                           href="#">
+                            <div class="d-flex align-items-center">
+                                <span class="icon icon-md mr-3 h-auto"><i class="fab fa-google-play"></i></span>
+                                <div class="d-block text-left">
+                                    <small class="font-small">بارگیری در</small>
+                                    <div class="h6 mb-0">گوگل پلی</div>
+                                </div>
+                            </div>
+                        </a>
+                        <a class="btn btn-pill border border-variant-light text-white shadow-hover" href="#">
+                            <div class="d-flex align-items-center">
+                                <span class="icon icon-md mr-3 h-auto"><i class="fab fa-windows"></i></span>
+                                <div class="d-block text-left">
+                                    <small class="font-small">بارگیری در</small>
+                                    <div class="h6 mb-0">پنجره ها</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--cta section end-->
+
+    <!--services section start-->
+    <section class="section services-section ptb-100 bg-soft">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="section-heading text-center mb-5">
+                        <h2>ما خدمات با کیفیت ارائه می دهیم</h2>
+                        <p class="lead">به طور کارآمد صلاحیت های اصلی از پایان به پایان را بدون حفظ نگهداری کنید. به
+                            صورت پویا راه حل های تاکتیکی بدون ارزش فعال را تقویت کنید.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
+                    <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
+                        <div class="icon icon-lg mr-4 text-secondary">
+                            <i class="ti-announcement"></i>
+                        </div>
+                        <div class="services-content-wrap">
+                            <h3 class="h6">خدمات بازاریابی</h3>
+                            <p>با مشارکت های سطح بندی منابع ، به تدریج تفکر "خارج از چارچوب" را تقویت کنید.</p>
+                            <a href="services-details.html"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
+                    <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
+                        <div class="icon icon-lg mr-4 text-secondary">
+                            <i class="ti-light-bulb"></i>
+                        </div>
+                        <div class="services-content-wrap">
+                            <h3 class="h6">توسعه برنامه وب</h3>
+                            <p>سریعتر تجارت الکترونیکی جامع را به جای آماده بودن برای هدف در وب ، به منصه ظهور
+                                برسانید.</p>
+                            <a href="services-details.html"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
+                    <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
+                        <div class="icon icon-lg mr-4 text-secondary">
+                            <i class="ti-headphone-alt"></i>
+                        </div>
+                        <div class="services-content-wrap">
+                            <h3 class="h6">24/7 خدمات مرکز تماس</h3>
+                            <p>با استفاده از پورتال های جهانی مشتری مدارهای مبتنی بر چندرسانه ای را با اقتدار دوباره
+                                اختراع کنید.</p>
+                            <a href="services-details.html"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
+                    <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
+                        <div class="icon icon-lg mr-4 text-secondary">
+                            <i class="ti-bell"></i>
+                        </div>
+                        <div class="services-content-wrap">
+                            <h3 class="h6">بازاریابی از طریق رسانه های اجتماعی</h3>
+                            <p>با قاطعیت از خدمات الکترونیکی استاندارد شده دیگر با همکاری همگانی تجارت الکترونیکی
+                                استفاده کنید. </p>
+                            <a href="services-details.html"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
+                    <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
+                        <div class="icon icon-lg mr-4 text-secondary">
+                            <i class="ti-briefcase"></i>
+                        </div>
+                        <div class="services-content-wrap">
+                            <h3 class="h6">مشاغل شرکتی</h3>
+                            <p>مقیاس مشتاقانه زنجیره های تأمین مشتری محوری را در مقابل منافع فعال شده ، هسته جهانی را
+                                تقویت می کنند.</p>
+                            <a href="services-details.html"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 mb-4 mb-md-4">
+                    <div class="services-single d-flex p-5 shadow-sm bg-white rounded">
+                        <div class="icon icon-lg mr-4 text-secondary">
+                            <i class="ti-vector"></i>
+                        </div>
+                        <div class="services-content-wrap">
+                            <h3 class="h6">مشاوره خلاق</h3>
+                            <p>به راحتی نیازهای شرکتی را برای ایده های بهترین روش های نوآورانه ایجاد تغییرات اخلاقی
+                                تولید کنید.</p>
+                            <a href="services-details.html"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--services section end-->
+
+    <!--blog section start-->
+    <section class="section section-lg ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-heading text-center mb-5">
+                        <h2>آخرین اخبار ما</h2>
+                        <p class="lead">به صورت پویا همگرایی قابل اطمینان را دنبال کنید تا بهبود فرآیند 24/7 ، خدمات
+                            مشتری به پایان را توسعه دهید.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for a in article %}
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-md-4 mb-lg-0 mb-4">
+                    <div class="card bg-white border-variant-soft shadow-soft">
+                        <div class="blog-img position-relative">
+                            <img src="{{ a.image.url }}" class="card-img-top rounded-top"
+                                 alt="دفترهای مضمون">
+                            <a href="#" class="position-absolute category-text small badge badge-secondary">{{ a.categori.all.0 }}</a>
+                        </div>
+                        <div class="card-body">
+                            <div class="media d-flex align-items-center justify-content-between">
+                                <div class="post-group">
+                                    <a href="#" data-toggle="tooltip" data-placement="top" title=""
+                                       data-original-title="23k followers">
+                                        <img class="avatar avatar-xs mr-2 img-fluid rounded-circle border border-variant-primary p-1"
+                                             src="{{ request.user.profile.image.url }}" alt="مدیر"> <span
+                                            class="small">{{ a.witer }}</span>
+                                    </a>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="small"><span
+                                            class="far fa-calendar-alt mr-2"></span>{{ a.create }}</span>
+                                </div>
+                            </div>
+                            <h3 class="h5 card-title mt-3"><a href="#">{{ a.titel }}</a></h3>
+                            <p class="card-text">{{ a.text }}
+                                </p>
+                            <a href="{{ a.get_absulot_url }}"
+                               class="link-with-icon text-default font-small font-weight-bold" target="_blank">ادامه
+                                مطلب <span> <i class="fas fa-angle-left"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--blog section end-->
+
+    <!--testimonial section start-->
+    <section class="section section-lg  bg-primary">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-9 col-lg-8">
+                    <div class="section-heading mb-5 text-center text-white">
+                        <h2>آنچه مشتریان درباره ما می گویند</h2>
+                        <p class="lead">
+                            منابع شفاف داخلی یا "ارگانیک" را به سرعت تغییر شکل می دهیم در حالی که کسب و کار الکترونیکی
+                            مکنده منابع نوآورانه جذاب داخلی است.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="owl-carousel owl-theme client-testimonial custom-dot">
+                        <div class="item">
+                            <div class="testimonial-single shadow-sm bg-white rounded-custom p-5">
+                                <div class="quotation mb-4">
+                                    <span class="icon icon-md icon-lg  icon-light "><i
+                                            class="fas fa-quote-left"></i></span>
+                                </div>
+                                <blockquote class="blockquote">
+                                    روابط توزیع شده را قاطعانه به تأخیر بیندازید در حالی که سهام عدالت سرمایه های فکری
+                                    را سرمایه گذاری می کرد و همه چیز را از نظر انرژی تحت عمل پیش می برد.
+                                </blockquote>
+                                <div class="d-flex justify-content-md-between justify-content-lg-between align-items-center pt-3 rtl">
+                                    <div class="media align-items-center">
+                                        <img src="{% static "img/team/team-4.jpg" %}" alt="تیم"
+                                             class="avatar avatar-sm mr-3">
+                                        <div class="media-body">
+                                            <h6 class="mb-0"> کیان</h6>
+                                            <small>مدیر عامل ، تم تگ</small>
+                                        </div>
+                                    </div>
+                                    <div class="client-ratting d-none d-md-block d-lg-block">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                        </ul>
+                                        <span class="font-weight-bold small">5.0 <span
+                                                class="font-weight-lighter">از 5</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-single shadow-sm bg-white rounded-custom p-5">
+                                <div class="quotation mb-4">
+                                    <span class="icon icon-md icon-lg  icon-light "><i
+                                            class="fas fa-quote-left"></i></span>
+                                </div>
+                                <blockquote class="blockquote">
+                                    ضروریات ذاتی و بدون خدمات نسل بعدی را ذاتاً تسهیل می کنید. با تحریک انقلابی ، بهترین
+                                    شیوه های سازمانی کاربران جهانی را متحول کرد.
+                                </blockquote>
+                                <div class="d-flex justify-content-md-between justify-content-lg-between align-items-center pt-3 rtl">
+                                    <div class="media align-items-center">
+                                        <img src="{% static "img/team/team-1.jpg" %}" alt="تیم"
+                                             class="avatar avatar-sm mr-3">
+                                        <div class="media-body">
+                                            <h6 class="mb-0">پرتول کارول</h6>
+                                            <small>رهبر تیم ، برچسب های تم</small>
+                                        </div>
+                                    </div>
+                                    <div class="client-ratting d-none d-md-block d-lg-block">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                        </ul>
+                                        <span class="font-weight-bold small">5.0 <span
+                                                class="font-weight-lighter">از 5</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-single shadow-sm bg-white rounded-custom p-5">
+                                <div class="quotation mb-4">
+                                    <span class="icon icon-md icon-lg  icon-light "><i
+                                            class="fas fa-quote-left"></i></span>
+                                </div>
+                                <blockquote class="blockquote">
+                                    روابط توزیع شده را قاطعانه به تأخیر بیندازید در حالی که سهام عدالت سرمایه های فکری
+                                    را سرمایه گذاری می کرد و همه چیز را از نظر انرژی تحت عمل پیش می برد.
+                                </blockquote>
+                                <div class="d-flex justify-content-md-between justify-content-lg-between align-items-center pt-3 rtl">
+                                    <div class="media align-items-center">
+                                        <img src="{% static "img/team/team-2.jpg" %}" alt="تیم"
+                                             class="avatar avatar-sm mr-3">
+                                        <div class="media-body">
+                                            <h6 class="mb-0"> کیان</h6>
+                                            <small>مدیر عامل ، تم تگ</small>
+                                        </div>
+                                    </div>
+                                    <div class="client-ratting d-none d-md-block d-lg-block">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                        </ul>
+                                        <span class="font-weight-bold small">5.0 <span
+                                                class="font-weight-lighter">از 5</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonial-single shadow-sm bg-white rounded-custom p-5">
+                                <div class="quotation mb-4">
+                                    <span class="icon icon-md icon-lg  icon-light "><i
+                                            class="fas fa-quote-left"></i></span>
+                                </div>
+                                <blockquote class="blockquote">
+                                    ضروریات ذاتی و بدون خدمات نسل بعدی را ذاتاً تسهیل می کنید. با تحریک انقلابی ، بهترین
+                                    شیوه های سازمانی کاربران جهانی را متحول کرد.
+                                </blockquote>
+                                <div class="d-flex justify-content-md-between justify-content-lg-between align-items-center pt-3 rtl">
+                                    <div class="media align-items-center">
+                                        <img src="{% static "img/team/team-6.jpg" %}" alt="تیم"
+                                             class="avatar avatar-sm mr-3">
+                                        <div class="media-body">
+                                            <h6 class="mb-0">پرتول کارول</h6>
+                                            <small>رهبر تیم ، برچسب های تم</small>
+                                        </div>
+                                    </div>
+                                    <div class="client-ratting d-none d-md-block d-lg-block">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                            <li class="list-inline-item mr-0"><span
+                                                    class="icon icon-xs font-small text-warning"><i
+                                                    class="fas fa-star ratting-color"></i></span></li>
+                                        </ul>
+                                        <span class="font-weight-bold small">5.0 <span
+                                                class="font-weight-lighter">از 5</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--testimonial section end-->
+
+    <!--team section start-->
+    <section class="section section-lg ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-heading text-center mb-5">
+                        <h2>تیم ما</h2>
+                        <p class="lead">به صورت پویا همگرایی قابل اطمینان را دنبال کنید تا بهبود فرآیند 24/7 ، خدمات
+                            مشتری به پایان را توسعه دهید.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for p in profile %}
+                <div class="col-12 col-md-6 col-lg-4 mb-md-4 mb-lg-0 mb-4">
+                    <div class="profile-card text-center">
+                        <div class="card bg-soft  shadow-sm animate-hover border-variant-soft">
+                            <div class="profile-image-small  bg-white  shadow-inset shadow border border-light rounded-circle p-1 mt-5 mb-4">
+                                <img src="{{ p.image.url }}" class="card-img-top rounded-circle"
+                                     alt="کریستوفر آواتار">
+                            </div>
+                            <div class="card-body text-center px-5 pb-5 pt-0">
+                                <h3 class="h5 mb-2">{{ p.name }}</h3>
+                                <span class="h6 font-weight-normal text-gray mb-3">{{ p.mahart }}ه</span>
+                                <ul class="list-unstyled d-flex my-3 justify-content-center">
+                                    <li>
+                                        <a href="{{p.fasebook}}" target="_blank" aria-label="پیوند اجتماعی فیس بوک"
+                                           class="icon icon-xs icon-facebook mr-3" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="5000 لایک">
+                                            <span class="fab fa-facebook-f"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ p.twiter }}" target="_blank" aria-label="پیوند اجتماعی توییتر"
+                                           class="icon icon-xs icon-twitter mr-3" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="4000 دنبال کننده">
+                                            <span class="fab fa-twitter"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ p.youtube }}" target="_blank" aria-label="پیوند اجتماعی شل"
+                                           class="icon icon-xs icon-slack mr-3" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="4000 عضویت">
+                                            <span class="fab fa-youtube"></span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ p.instagram }}" target="_blank" aria-label="پیوند اجتماعی دریبل"
+                                           class="icon icon-xs icon-dribbble mr-3" data-toggle="tooltip"
+                                           data-placement="top" title="" data-original-title="2000 پروژه">
+                                            <span class="fab fa-dribbble"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <p class="card-text">{{ p.about_me }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!--team section end-->
+
+    <!--customer logo section start-->
+    <div class="section section-sm bg-soft">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme clients-carousel">
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo1.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo5.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo6.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo4.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo2.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo6.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo3.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                        <div class="item single-client">
+                            <img src="{% static "img/client-logos/logo8.png" %}" alt="آرم مشتری" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--customer logo section end-->
+
+</div>
+{% endblock %}

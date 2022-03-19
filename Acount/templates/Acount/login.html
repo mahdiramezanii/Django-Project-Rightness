@@ -1,0 +1,73 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block content %}
+<!--header section end-->
+
+<div class="main">
+
+    <!--login section start-->
+    <section class="section section-lg section-header position-relative min-vh-100 flex-column d-flex justify-content-center" style="background: url('{% static 'img/slider-bg-1.svg' %}')no-repeat center bottom / cover">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-md-7 col-lg-6">
+                    <div class="hero-content-left text-white">
+                        <h1 class="display-2">خوش آمدید !</h1>
+                        <p class="lead">
+                            صورت خود را همیشه به سمت آفتاب نگه دارید - و سایه ها پشت سر شما قرار می گیرند.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-5 col-lg-5">
+                    <div class="card login-signup-card shadow-lg mb-0">
+                        <div class="card-body px-md-5 py-5">
+                            <div class="mb-5">
+                                <h3>وارد شدن</h3>
+                                <p class="text-muted">برای ادامه وارد حساب خود شوید.</p>
+                            </div>
+
+                            <!--login form-->
+                            <form class="login-signup-form"  method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="font-weight-bold">ام کاربری</label>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-icon">
+                                            <i class="ti-email"></i>
+                                        </div>
+                                        <input type="text" class="form-control"  name="username" placeholder="ایمیل خود را وارد کنید" required="">
+                                    </div>
+                                </div>
+                                <!-- Password -->
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="font-weight-bold">کلمه عبور</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <a href="{% url "Acount:change" %}" class="form-text small text-muted">
+                                                رمز عبور خود را فراموش کرده اید؟
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-merge">
+                                        <div class="input-icon">
+                                            <i class="ti-lock"></i>
+                                        </div>
+                                        <input type="password" name="password" class="form-control" placeholder="رمز ورود خود را وارد کنید">
+                                    </div>
+                                </div>
+
+                                <!-- Submit -->
+                                <button class="btn btn-block btn-secondary mt-4 mb-3">ورود</button>
+
+                            </form>
+                        </div>
+                        <div class="card-footer bg-soft text-center border-top px-md-5"><small>ثبت نشده؟ </small>
+                            <a href="{% url "Acount:register" %}" class="small">ایجاد حساب کاربری</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}

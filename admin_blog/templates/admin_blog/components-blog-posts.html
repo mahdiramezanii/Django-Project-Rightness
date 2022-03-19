@@ -1,0 +1,49 @@
+{% extends "admin_base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="main-content-container container-fluid px-4">
+        {% for i in post %}
+
+        <div class="col-lg-6 col-sm-12 mb-4">
+            <div class="card card-small card-post card-post--aside card-post--1">
+                <div class="card-post__image"
+                     style="background-image: url('{{ i.image.url }}');">
+                    <a href="#" class="card-post__category badge badge-pill badge-dark">{{ i.categori.all.0 }}</a>
+                    <div class="card-post__author d-flex">
+                        <a href="#" class="card-post__author-avatar card-post__author-avatar--small"
+                           style="background-image: url('{{ request.user.profile.image.url }}');">Written by Jamie James</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a class="text-fiord-blue" href="#">
+                            {{ i.titel }}
+                            </a>
+                    </h5>
+                    <p class="card-text d-inline-block mb-3">{{ i.text }}
+                      </p>
+                    <span class="text-muted">{{ i.create }}</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
