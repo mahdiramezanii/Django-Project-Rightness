@@ -66,12 +66,21 @@ def register(request):
             user.save()
 
             subject = "به وبسایت من خوش آمدید"
-            message = f"سلام {username} به وبسایت من خوشآمدی " \
-                      f"من فرحناز هستم" \
-                      f"امیدوارم باهم به جاخای خوبی برسیم"
+            message = f" سلام  {username} " \
+                      f"به وبسایت من خوش اومدی" \
+                      f"برای دریافت برنامه ورزشی وارد حساب کاربری خودت شو و فرم رو تکمیل کن" \
+                      f"من برنامه روزنامه رو برات ارسال میکنم"
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [user.email, ]
             send_mail(subject, message, email_from, recipient_list)
+
+            subject2="ثبت نام جدید در سایت"
+            message2=f"یک شخص جدید در سایت شما ثبت نام کرد" \
+                      f": نام کاربری{username}" \
+                      f":ایمیل{email}"
+            email_from2 = settings.EMAIL_HOST_USER
+            recipient_list2 = ["mahdiramazani1281@gmail.com", ]
+            send_mail(subject2, message2, email_from2, recipient_list2)
             login(request,user)
             return redirect("Home:Home")
 
@@ -83,41 +92,34 @@ def change_pass(request):
 
     context={
         "errors":[],
-
-
-
     }
 
-    number=numpy.random.randint(1,10,size=5)
+
     if request.method=="POST":
         email=request.POST.get("email")
+        pass1=request.POST.get("password1")
+        pass2=request.POST.get("password2")
 
-
+        if pass1 != pass2:
+            context["errors"].append("رمز ها شباهن ندارد")
+            return render(request, "Acount/change-password.html", context)
 
         if User.objects.filter(email=email).exists():
 
             user=User.objects.get(email=email)
-            subject = "تغییر رمز عبور"
-            message = f"رمز تایید شما:{number}"
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [user.email, ]
-            send_mail(subject, message, email_from, recipient_list)
+
+            user.set_password(pass1)
+            user.save()
 
 
-            return render(request,"Acount/confuremail.html",context)
+            login(request,user)
+            return redirect("Home:Home")
 
         else:
-            context["errors"].append("نام كاربري وجود ندارد")
+            context["errors"].append("ایمیل وجود ندارد")
             return render(request,"Acount/change-password.html",context)
 
-    if request.method=="POST":
-            code=request.POST.get("code")
-            print(code)
-            if code==number:
-                 return redirect("Acount:confirmation_Email")
+
 
     return render(request,"Acount/change-password.html")
 
-def Email_confirmation(request):
-
-    return render(request,"Acount/confuremail.html")

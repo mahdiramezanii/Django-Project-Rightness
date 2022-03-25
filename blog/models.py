@@ -15,25 +15,25 @@ class categorical(models.Model):
 class article(models.Model):
 
     witer=models.ForeignKey(User,on_delete=models.CASCADE)
-    categori=models.ManyToManyField(categorical)
+    categori=models.CharField(max_length=20,default="test")
     titel=models.CharField(max_length=50)
     image=models.ImageField(upload_to="blog/image")
     text=models.TextField()
-    slug=models.SlugField(blank=True)
+    #slug=models.SlugField(blank=True)
     create=models.DateField(default=timezone.now())
 
     def get_absulot_url(self):
 
-        return reverse("blog:post",kwargs={"slug":self.slug})
+        return reverse("blog:post",kwargs={"slug":self.id})
 
 
     def __str__(self):
         return self.titel
 
-    def save(self,*args,**kwargs):
+    """def save(self,*args,**kwargs):
         self.slug=slugify(self.titel)
 
-        super(article, self).save(args,kwargs)
+        super(article, self).save(args,kwargs)"""
 
 
 

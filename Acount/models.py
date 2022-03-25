@@ -3,10 +3,15 @@ from django.contrib.auth.models import User
 
 class profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    father_name=models.CharField(max_length=50)
-    nation_code=models.CharField(max_length=50)
-    image=models.ImageField(default="defult/index.png",upload_to="profile_user",blank=True,null=True)
-
+    first_name=models.CharField(max_length=20)
+    last_name=models.CharField(max_length=50)
+    email=models.EmailField()
+    password=models.CharField(max_length=20)
+    addres=models.TextField()
+    discription=models.TextField()
+    power=models.CharField(max_length=50,blank=True,null=True)
+    image=models.ImageField(default="defult/index.png",upload_to="profile_user",null=True,blank=True)
+    blog_admin=models.BooleanField(default=False)
 
     def __str__(self):
-        return self.nation_code
+        return self.first_name

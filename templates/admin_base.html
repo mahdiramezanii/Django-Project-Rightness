@@ -97,19 +97,23 @@
                   <span>Blog Dashboard</span>
                 </a>
               </li>
+
+               {% if request.user.profile.blog_admin == True %}
               <li class="nav-item">
                 <a class="nav-link " href="{% url "admin_blog:blog_post" %}">
                   <i class="material-icons">vertical_split</i>
                   <span>Blog Posts</span>
                 </a>
               </li>
+
+
               <li class="nav-item">
                 <a class="nav-link " href="{% url "admin_blog:add_post" %}">
                   <i class="material-icons">note_add</i>
                   <span>Add New Post</span>
                 </a>
               </li>
-
+                {% endif %}
               <li class="nav-item">
                 <a class="nav-link " href="{% url "admin_blog:blog_profile" %}">
                   <i class="material-icons">person</i>
@@ -179,12 +183,9 @@
                     <span class="d-none d-md-inline-block">{{ request.user.get_full_name }}</span>
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
-                    <a class="dropdown-item" href="components-blog-posts.html">
-                      <i class="material-icons">vertical_split</i> Blog Posts</a>
-                    <a class="dropdown-item" href="add-new-post.html">
-                      <i class="material-icons">note_add</i> Add New Post</a>
+
+
+
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="{% url "Acount:logout" %}">
                       <i class="material-icons text-danger">&#xE879;</i> Logout </a>

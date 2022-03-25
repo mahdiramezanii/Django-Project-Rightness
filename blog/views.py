@@ -14,7 +14,7 @@ def weblog(request):
 def post_detail(request,slug):
 
     context={
-        "post":article.objects.get(slug=slug),
+        "post":article.objects.get(id=slug),
         "contact": contact_by_me.objects.all()
     }
 
